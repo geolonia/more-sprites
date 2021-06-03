@@ -25,6 +25,11 @@ const svgs = [
   };
 });
 
+/**
+ *
+ * @param {number} pxRatio
+ * @returns { name: string, data: string }
+ */
 const genJSON = (pxRatio) => {
   let file = "";
   if (pxRatio > 1) {
@@ -47,6 +52,11 @@ const genJSON = (pxRatio) => {
   });
 };
 
+/**
+ *
+ * @param {number} pxRatio
+ * @returns { name: string, data: Buffer }
+ */
 const genPNG = (pxRatio) => {
   let file = "";
   if (pxRatio > 1) {
