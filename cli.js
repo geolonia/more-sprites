@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const spritezero = require("@mapbox/spritezero");
 const fs = require("fs");
 const glob = require("glob");
