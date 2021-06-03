@@ -12,3 +12,7 @@ $ npm install -g @geolonia/more-sprites
 $ npx more-sprites ./svgs > ./icons.zip
 $ unzip ./icons.zip
 ```
+
+## License
+
+For more information about icon licensing, please see https://sprites.geolonia.com.
