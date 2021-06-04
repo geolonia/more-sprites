@@ -1,7 +1,7 @@
 {
   "name": "@geolonia/more-sprites",
   "version": "1.0.0",
-  "bin": "cli.js",
+  "bin": "src/cli.js",
   "license": "MIT",
   "devDependencies": {
     "jest": "^27.0.4"
