@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const meow = require("meow");
 const archiver = require("archiver");
 const { getSVG, genJSON, genPNG } = require("./lib");
 
