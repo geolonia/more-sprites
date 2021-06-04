@@ -1,36 +1,39 @@
-#!/usr/bin/env node
-
 const spritezero = require("@mapbox/spritezero");
 const fs = require("fs");
 const glob = require("glob");
 const path = require("path");
-const archiver = require("archiver");
 
-const inputPath = process.argv[2];
-const defaultSvgsPath = path.resolve(
-  __dirname,
-  "node_modules",
-  "sprites.geolonia.com",
-  "src",
-  "*.svg"
-);
+/**
+ *
+ * @param {string} inputPath
+ * @returns
+ */
+const getSVG = (inputPath) => {
+  const defaultSvgsPath = path.resolve(
+    __dirname,
+    "node_modules",
+    "sprites.geolonia.com",
+    "src",
+    "*.svg"
+  );
 
-const svgs = [
-  ...glob.sync(defaultSvgsPath),
-  ...glob.sync(path.resolve(inputPath, "*.svg")),
-].map((f) => {
-  return {
-    svg: fs.readFileSync(f),
-    id: path.basename(f).replace(".svg", ""),
-  };
-});
+  return [
+    ...glob.sync(defaultSvgsPath),
+    ...glob.sync(path.resolve(inputPath, "*.svg")),
+  ].map((f) => {
+    return {
+      svg: fs.readFileSync(f),
+      id: path.basename(f).replace(".svg", ""),
+    };
+  });
+};
 
 /**
  *
  * @param {number} pxRatio
  * @returns { name: string, data: string }
  */
-const genJSON = (pxRatio) => {
+const genJSON = (svgs, pxRatio) => {
   let file = "";
   if (pxRatio > 1) {
     file = `@${pxRatio}x`;
@@ -57,7 +60,7 @@ const genJSON = (pxRatio) => {
  * @param {number} pxRatio
  * @returns { name: string, data: Buffer }
  */
-const genPNG = (pxRatio) => {
+const genPNG = (svgs, pxRatio) => {
   let file = "";
   if (pxRatio > 1) {
     file = `@${pxRatio}x`;
@@ -82,14 +85,4 @@ const genPNG = (pxRatio) => {
   });
 };
 
-// generate x1 and x2
-Promise.all([genJSON(1), genJSON(2), genPNG(1), genPNG(2)]).then((items) => {
-  const archive = archiver.create("zip");
-  archive.directory("icons/", false);
-  items.forEach((item) => {
-    console.log(item);
-    archive.append(item.data, { name: `icons/${item.name}` });
-  });
-  archive.pipe(process.stdout);
-  archive.finalize();
-});
+module.exports = { getSVG, genPNG, genJSON };

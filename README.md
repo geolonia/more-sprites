@@ -7,7 +7,6 @@ You can specify the SVG folder as the first argument, and it will receive the @1
 ## usage example
 
 ```shell
-$ nvm use v10 # This package depends on Node v10
 $ npm install -g @geolonia/more-sprites
 $ npx more-sprites ./svgs > ./icons.zip
 $ unzip ./icons.zip

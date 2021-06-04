@@ -1,15 +1,17 @@
 {
   "name": "@geolonia/more-sprites",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "bin": "cli.js",
   "license": "MIT",
-  "devDependencies": {},
-  "engines": {
-    "node": ">=10 <12"
+  "devDependencies": {
+    "jest": "^27.0.4"
   },
   "dependencies": {
     "@mapbox/spritezero": "^7.0.1",
     "archiver": "^5.3.0",
     "sprites.geolonia.com": "https://github.com/geolonia/sprites.geolonia.com"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
