@@ -33,10 +33,10 @@ const getSVG = (inputPath) => {
  * @param {number} pxRatio
  * @returns { name: string, data: string }
  */
-const genJSON = (svgs, pxRatio) => {
-  let file = "";
+const genJSON = (svgs, basename, pxRatio) => {
+  let postfix = "";
   if (pxRatio > 1) {
-    file = `@${pxRatio}x`;
+    postfix = `@${pxRatio}x`;
   }
   return new Promise((resolve, reject) => {
     spritezero.generateLayout(
@@ -46,7 +46,7 @@ const genJSON = (svgs, pxRatio) => {
           reject(error);
         } else {
           resolve({
-            name: `basic${file}.json`,
+            name: `${basename}${postfix}.json`,
             data: JSON.stringify(dataLayout),
           });
         }
@@ -60,10 +60,10 @@ const genJSON = (svgs, pxRatio) => {
  * @param {number} pxRatio
  * @returns { name: string, data: Buffer }
  */
-const genPNG = (svgs, pxRatio) => {
-  let file = "";
+const genPNG = (svgs, basename, pxRatio) => {
+  let postfix = "";
   if (pxRatio > 1) {
-    file = `@${pxRatio}x`;
+    postfix = `@${pxRatio}x`;
   }
   return new Promise((resolve, reject) => {
     spritezero.generateLayout(
@@ -76,7 +76,7 @@ const genPNG = (svgs, pxRatio) => {
             if (error2) {
               reject(error2);
             } else {
-              resolve({ name: `basic${file}.png`, data: image });
+              resolve({ name: `${basename}${postfix}.png`, data: image });
             }
           });
         }

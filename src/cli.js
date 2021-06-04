@@ -3,17 +3,23 @@
 const archiver = require("archiver");
 const { getSVG, genJSON, genPNG } = require("./lib");
 
-const inputPath = process.argv[2];
+const name = process.argv[2];
+const inputPath = process.argv[3];
+
+if (!name || !inputPath) {
+  process.stderr.write(`Invalid name and inputPath: ${name}, ${inputPath}`);
+  process.exit(1);
+}
 
 const main = async () => {
   const svgs = getSVG(inputPath);
 
   // generate x1 and x2
   const items = await Promise.all([
-    genJSON(svgs, 1),
-    genJSON(svgs, 2),
-    genPNG(svgs, 1),
-    genPNG(svgs, 2),
+    genJSON(svgs, name, 1),
+    genJSON(svgs, name, 2),
+    genPNG(svgs, name, 1),
+    genPNG(svgs, name, 2),
   ]);
 
   const archive = archiver.create("zip");

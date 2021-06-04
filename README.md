@@ -8,7 +8,7 @@ You can specify the SVG folder as the first argument, and it will receive the @1
 
 ```shell
 $ npm install -g @geolonia/more-sprites
-$ npx more-sprites ./svgs > ./icons.zip
+$ npx more-sprites {name} {SVG path} > ./icons.zip
 $ unzip ./icons.zip
 ```
 
