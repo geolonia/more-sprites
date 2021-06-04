@@ -3,20 +3,21 @@ const fs = require("fs");
 const glob = require("glob");
 const path = require("path");
 
+const defaultSvgsPath = path.resolve(
+  __dirname,
+  "..",
+  "node_modules",
+  "sprites.geolonia.com",
+  "src",
+  "*.svg"
+);
+
 /**
  *
  * @param {string} inputPath
  * @returns
  */
 const getSVG = (inputPath) => {
-  const defaultSvgsPath = path.resolve(
-    __dirname,
-    "node_modules",
-    "sprites.geolonia.com",
-    "src",
-    "*.svg"
-  );
-
   return [
     ...glob.sync(defaultSvgsPath),
     ...glob.sync(path.resolve(inputPath, "*.svg")),
