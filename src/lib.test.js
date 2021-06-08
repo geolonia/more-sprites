@@ -8,7 +8,7 @@ describe("should match snapshots", () => {
   });
 
   it.skip("should match png snapshot", async () => {
-    // Linux vs. MacOS problem
+    // Linux vs. MacOS, snapshot mismatch problem
     const png = await genPNG(svgs, "basic", 1);
     expect(png).toMatchSnapshot();
   });
