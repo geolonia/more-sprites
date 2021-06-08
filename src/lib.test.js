@@ -1,10 +1,10 @@
 const { getSVG, genJSON, genPNG } = require("./lib");
 
-test("should match snapshots", () => {
+test("should match snapshots", async () => {
   const svgs = getSVG("__test__/svgs");
-  const pngs = genPNG(svgs, "basic", 1);
-  const jsons = genJSON(svgs, "basic", 1);
+  const png = await genPNG(svgs, "basic", 1);
+  const json = await genJSON(svgs, "basic", 1);
   expect(svgs).toMatchSnapshot();
-  expect(pngs).toMatchSnapshot();
-  expect(jsons).toMatchSnapshot();
+  expect(png).toMatchSnapshot();
+  expect(json).toMatchSnapshot();
 });
